@@ -4,8 +4,8 @@ FoRealEstate is a web app that pulls data from TradeMe Properties and displays i
 
 Team FoRealEsate consists of:
 
-Emily M ()
-Alan P ()
-Amanda B ()
-Briar D ()
-Dan Y ()
+Emily M (kanocarra)
+Alan P (Astrellux)
+Amanda B (atomicsloth)
+Briar D (briardods)
+Dan Y (djyoung)
