@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+    <style type="text/css">
+        html, body, #map-canvas {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #main, #main>.row {
+            height:100%;
+        }
+
+        .vertical_center {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            margin-top:auto;
+            margin-bottom:auto;
+            background-color: #ff9800;
+            height: 100%;
+
+        }
+
+
+        #map-canvas {
+            width:75%;
+            height:100%;
+            position:absolute;
+            right:0px;
+            top:0px;
+            bottom:0;
+            overflow:hidden;
+        }
+
+        #panel {
+            left: 50%;
+            margin-left: -180px;
+            padding: 5px;
+            border: 1px solid #999;
+        }
+
+        #panel, .panel {
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #panel select, #panel input, .panel select, .panel input {
+            font-size: 15px;
+        }
+
+        #panel select, .panel select {
+            width: 100%;
+        }
+
+        #panel i, .panel i {
+            font-size: 12px;
+        }
+
+    </style>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4RfaYlHIj7Ers6mE0mUamZt8rU6xdvGI">
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script type="text/javascript">
+        // This example displays a marker at the center of Australia.
+        // When the user clicks the marker, an info window opens.
+        //Newmarket position: -36.8683083, 174.7766063
+        //**
+        var MY_MAPTYPE_ID = 'custom_style';
+        var geocoder;
+        //**
+        function initialize() {
+            var myLatlng = new google.maps.LatLng(-36.8630231,174.8654693);
+            geocoder = new google.maps.Geocoder();
+
+
+            //DANIELS OBJ
+            // var DBobject = new etc();
+
+            //****** --- INTEGRATION WAS STARTING HERE LAST NIGHT OMFG*//
+
+            var featureOpts = [
+                {
+                    stylers: [
+                        {hue: '#1EAB00'},
+                        //{ visibility: 'simplified' },
+                        {gamma: 0.5},
+                        {weight: 0.5}
+                    ]
+                },
+                {
+                    elementType: 'labels',
+                    stylers: [
+                        {visibility: 'on'}
+                    ]
+                },
+                {
+                    featureType: 'road.highway',
+                    stylers: [
+                        {color: '#76826D'}
+                    ]
+                },
+                {
+                    featureType: 'road.local',
+                    stylers: [
+                        {color: '#93AD90'}
+                    ]
+                },
+                {
+                    featureType: 'water',
+                    stylers: [
+                        {color: '#4575AB'}
+                    ]
+                }
+            ];
+
+            //******
+
+            var mapOptions = {
+                zoom: 11,
+                center: myLatlng,
+                //***
+                mapTypeControlOptions: {
+                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+                },
+                mapTypeId: MY_MAPTYPE_ID
+                //***
+            };
+
+            function codeAddress() {
+                var address = document.getElementById("address").value;
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                        });
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+//****
+            var styledMapOptions = {
+                name: 'Custom Style'
+            };
+
+            var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+            map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+//****
+
+            var contentString = "asd";
+
+            /*
+             '<div id="content">'+
+             '<div id="siteNotice">'+
+             '</div>'+
+             '<h1 id="firstHeading" class="firstHeading">New Market</h1>'+
+             '<div id="bodyContent">'+
+             '<p><b>test blahblah</b></p>'+
+             '<a href="http://newmarket.co.nz"> </a>' +
+             '</div>'+
+             '</div>';
+             */
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            //var tradeMeData = fakeDB();
+           // console.log(tradeMeData);
+            $.getJSON("data/newmarket_properties.json", function (json) {
+               var tradeMeData = json.list;
+                console.log(json);
+//            var marker = new google.maps.Marker({
+//                position: newmarket_properties.list[0].GeographicLocation.Latitude ,
+//                map: map,
+//                title: 'NewMarket'
+//            });
+              //  tradeMeData.forEach(function (tm) {
+                json.List.forEach(function(tm){
+                    var geo = tm.GeographicLocation;
+                    var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng2,
+                        map: map,
+                        title: 'NewMarket House'
+
+
+                    });
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+                });
+            });
+
+        }
+        $(function () {
+            $('button[name="btn-suburb"]').click(codeAddress());
+        });
+
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+        function fakeDB() {
+//      var myFakeStuff = {latitude: -36.8683085, longitude: 174.7766065, url: "http://www.google.com"};
+//      var myFakeStuff2 = {latitude: -36.8683086, longitude: 174.775, url: "http://www.google.com"};
+//      var arrayOfStuff = [];
+//      arrayOfStuff[0] = myFakeStuff;
+//      arrayOfStuff[1] = myFakeStuff2;
+         //  .responseJSON;
+            //return arrayOfStuff;
+        }
+
+
+    </script>
+
+</head>
+<body onload="initialize()">
+
+<div class="container-fluid" id="main">
+    <div class="row">
+        <div class="col-xs-3 vertical_center">
+            <h2>HouseIt</h2>
+            <div id="panel">
+                <p><button name=btn-suburb" adress= "Newmarket, Auckland" onclick = "codeAddress()">Suburb</button></p>
+
+                <!--<input id="address" type="textbox" value="newmarket, auckland">
+                <input type="button" value="Search" onclick="codeAddress()">-->
+            </div>
+        </div>
+        <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
+        <div id="map-canvas"></div>
+    </div>
+</div>
+
+<div ng-view></div>
+
+<!--<div>Angular seed app: v<span app-version></span></div>
+
+ <!-- In production use:
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+ -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="view1/view1.js"></script>
+<script src="view2/view2.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+<script src="bower_components/html5-boilerplate/dist/js/vendor/jquery-1.11.3.min.js"></script>
+</body>
+</html>
