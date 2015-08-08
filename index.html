@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/suburbPrices.js"></script>
 
     <!--JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -167,10 +168,8 @@
                 json.List.forEach(function(tm){
                     var geo = tm.GeographicLocation;
                     var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
-
                     var addr = tm.Address;
                     var price = tm.PriceDisplay;
-                    var titl = tm.Title;
 
 
                     var marker = new google.maps.Marker({
@@ -179,7 +178,7 @@
                         title: 'NewMarket House'
                     });
 
-                    var contentString = addr + "<br>" + price + "<br>" + titl;
+                    var contentString = addr + "<br>" + price + "<br>" + suburb_data[0].num_sales;
 
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
@@ -210,7 +209,17 @@
     <div class="row">
         <div class="col-xs-3 vertical_center">
             <h2>HouseIt</h2>
-                <p><button name="btn-suburb"  onclick = "zoomMap(14, -36.8683083, 174.7766063)">Suburb</button></p>
+            <div id="panel">
+                <p><button name=btn-suburb"  onclick = "zoomMap()">Suburb</button></p>
+            </div>
+
+            <p> Number of Sales in New Market (last 3 months)
+                <ul id="num_sales"></ul>
+            <script>
+                $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
+            </script>
+
+            </p>
 
         </div>
         <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
