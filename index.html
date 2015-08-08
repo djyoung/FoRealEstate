@@ -178,7 +178,7 @@
                         title: 'NewMarket House'
                     });
 
-                    var contentString = addr + "<br>" + price + "<br>" + suburb_data[0].num_sales;
+                    var contentString = addr + "<br>" + price + "<br>";
 
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
@@ -213,12 +213,25 @@
                 <p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063)">Suburb</button></p>
             </div>
 
-            <p> Number of Sales in New Market (last 3 months)
+            <p> Number of Sales in current suburb(last 3 months)
                 <ul id="num_sales"></ul>
             <script>
                 $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
             </script>
+            </p>
 
+            <p> prices sold (last 3 months)
+            <ul id="cv_price"></ul>
+            <script>
+                $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
+            </script>
+            </p>
+
+            <p> CV difference in %
+            <ul id="cv_difference"></ul>
+            <script>
+                $("#cv_difference").append("<li>" + suburb_data[0].cv_difference + "</li>")
+            </script>
             </p>
 
         </div>
