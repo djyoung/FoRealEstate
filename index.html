@@ -11,6 +11,9 @@
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="js/suburbPrices.js"></script>
 
+    <!--JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -19,7 +22,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 
 
     <style type="text/css">
@@ -91,6 +94,8 @@
         //Newmarket position: -36.8683083, 174.7766063
         //**
         var MY_MAPTYPE_ID = 'custom_style';
+        var map;
+        varLatLng;
         //**
         function initialize() {
             var myLatlng = new google.maps.LatLng(-36.8630231,174.8654693);
@@ -144,12 +149,8 @@
                 //***
             };
 
-            function zoomMap() {
-                map.setZoom(14);
-            };
 
-
-            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
             var styledMapOptions = {
                 name: 'Custom Style'
@@ -177,7 +178,7 @@
                         title: 'NewMarket House'
                     });
 
-                    var contentString = addr + "<br>" + price + "<br>" + suburb_data[0].num_sales;
+                    var contentString = addr + "<br>" + price + "<br>";
 
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
@@ -190,6 +191,11 @@
                 });
             });
         }
+        function zoomMap(zoomLevel, lat, lng) {
+            map.setCenter(new google.maps.LatLng(lat,lng));
+            map.setZoom(zoomLevel);
+        }
+
 
         google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -204,8 +210,30 @@
         <div class="col-xs-3 vertical_center">
             <h2>HouseIt</h2>
             <div id="panel">
-                <p><button name=btn-suburb"  onclick = "zoomMap()">Suburb</button></p>
+                <p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063)">Suburb</button></p>
             </div>
+
+            <p> Number of Sales in current suburb(last 3 months)
+                <ul id="num_sales"></ul>
+            <script>
+                $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
+            </script>
+            </p>
+
+            <p> prices sold (last 3 months)
+            <ul id="cv_price"></ul>
+            <script>
+                $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
+            </script>
+            </p>
+
+            <p> CV difference in %
+            <ul id="cv_difference"></ul>
+            <script>
+                $("#cv_difference").append("<li>" + suburb_data[0].cv_difference + "</li>")
+            </script>
+            </p>
+
         </div>
         <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
         <div id="map-canvas"></div>
