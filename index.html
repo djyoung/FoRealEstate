@@ -206,6 +206,15 @@
             <div id="panel">
                 <p><button name=btn-suburb"  onclick = "zoomMap()">Suburb</button></p>
             </div>
+
+            <p> Number of Sales in New Market (last 3 months)
+                <ul id="num_sales"></ul>
+            <script>
+                $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
+            </script>
+
+            </p>
+
         </div>
         <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
         <div id="map-canvas"></div>
