@@ -103,12 +103,6 @@
             var myLatlng = new google.maps.LatLng(-36.8630231,174.8654693);
             geocoder = new google.maps.Geocoder();
 
-
-            //DANIELS OBJ
-            // var DBobject = new etc();
-
-            //****** --- INTEGRATION WAS STARTING HERE LAST NIGHT OMFG*//
-
             var featureOpts = [
                 {
                     stylers: [
@@ -172,65 +166,41 @@
             map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 //****
 
-            var contentString = "asd";
 
-            /*
-             '<div id="content">'+
-             '<div id="siteNotice">'+
-             '</div>'+
-             '<h1 id="firstHeading" class="firstHeading">New Market</h1>'+
-             '<div id="bodyContent">'+
-             '<p><b>test blahblah</b></p>'+
-             '<a href="http://newmarket.co.nz"> </a>' +
-             '</div>'+
-             '</div>';
-             */
-
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-
-            //var tradeMeData = fakeDB();
-           // console.log(tradeMeData);
             $.getJSON("data/newmarket_properties.json", function (json) {
                var tradeMeData = json.list;
                 console.log(json);
-//            var marker = new google.maps.Marker({
-//                position: newmarket_properties.list[0].GeographicLocation.Latitude ,
-//                map: map,
-//                title: 'NewMarket'
-//            });
-              //  tradeMeData.forEach(function (tm) {
+
                 json.List.forEach(function(tm){
                     var geo = tm.GeographicLocation;
                     var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
+
+                    var addr = tm.Address;
+                    var price = tm.PriceDisplay;
+                    var titl = tm.Title;
+
 
                     var marker = new google.maps.Marker({
                         position: myLatlng2,
                         map: map,
                         title: 'NewMarket House'
-
-
                     });
+
+                    var contentString = addr + "<br>" + price + "<br>" + titl;
+
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+
+
                     google.maps.event.addListener(marker, 'click', function () {
                         infowindow.open(map, marker);
                     });
                 });
             });
-
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-
-        function fakeDB() {
-//      var myFakeStuff = {latitude: -36.8683085, longitude: 174.7766065, url: "http://www.google.com"};
-//      var myFakeStuff2 = {latitude: -36.8683086, longitude: 174.775, url: "http://www.google.com"};
-//      var arrayOfStuff = [];
-//      arrayOfStuff[0] = myFakeStuff;
-//      arrayOfStuff[1] = myFakeStuff2;
-         //  .responseJSON;
-            //return arrayOfStuff;
-        }
 
 
     </script>
@@ -253,7 +223,6 @@
 
 <div ng-view></div>
 
-<!--<div>Angular seed app: v<span app-version></span></div>
 
  <!-- In production use:
  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
