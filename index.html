@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -153,12 +145,12 @@
             };
 
             function zoomMap() {
-            //    map.
-            }
+                map.setZoom(14);
+            };
+
 
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-//****
             var styledMapOptions = {
                 name: 'Custom Style'
             };
@@ -212,7 +204,7 @@
         <div class="col-xs-3 vertical_center">
             <h2>HouseIt</h2>
             <div id="panel">
-                <p><button name=btn-suburb"  onClick = "zoomMap()">Suburb</button></p>
+                <p><button name=btn-suburb"  onclick = "zoomMap()">Suburb</button></p>
             </div>
         </div>
         <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
@@ -220,15 +212,15 @@
     </div>
 </div>
 
-<div ng-view></div>
+<!--<div ng-view></div>-->
 
 
  <!-- In production use:
  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
  -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<script src="app.js"></script>
+<!--<script src="bower_components/angular/angular.js"></script>-->
+<!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+<!--<script src="app.js"></script>-->
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>
