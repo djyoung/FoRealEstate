@@ -99,22 +99,6 @@
 //****
 
 
-
-            //var contentString = "asd";
-
-
-            /*
-             '<div id="content">'+
-             '<div id="siteNotice">'+
-             '</div>'+
-             '<h1 id="firstHeading" class="firstHeading">New Market</h1>'+
-             '<div id="bodyContent">'+
-             '<p><b>test blahblah</b></p>'+
-             '<a href="http://newmarket.co.nz"> </a>' +
-             '</div>'+
-             '</div>';
-             */
-
             $.getJSON("data/newmarket_properties.json", function (json) {
                var tradeMeData = json.list;
                 console.log(json);
@@ -125,24 +109,25 @@
 
                     var addr = tm.Address;
                     var price = tm.PriceDisplay;
-                    var tit = tm.Title;
+                    var titl = tm.Title;
 
 
                     var marker = new google.maps.Marker({
                         position: myLatlng2,
                         map: map,
                         title: 'NewMarket House'
-
                     });
 
-                    var contentString =
+                    var contentString = addr + "<br>" + "awesome";
 
+                            /*
                             '<div id="content">'+
                             '<div id="siteNotice">'+
                             '</div>'+
                             '<h1 id="firstHeading" class="firstHeading">fuck</h1>'+
                             '<div id="bodyContent">'+
-                            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+
+                            '<p>Uluru is a large ' +
                             'sandstone rock formation in the southern part of the '+
                             'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
                             'south west of the nearest large town, Alice Springs; 450&#160;km '+
@@ -152,12 +137,13 @@
                             'Aboriginal people of the area. It has many springs, waterholes, '+
                             'rock caves and ancient paintings. Uluru is listed as a World '+
                             'Heritage Site.</p>'+
+
                             '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
                             'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
                             '(last visited June 22, 2009).</p>'+
                             '</div>'+
                             '</div>';
-
+*/
 
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
@@ -180,19 +166,13 @@
 <body>
 
 <div id="map-canvas"></div>
-<!--<ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
 
-  <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <div ng-view></div>
 
-<!--<div>Angular seed app: v<span app-version></span></div>
 
  <!-- In production use:
  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
