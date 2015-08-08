@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/suburbPrices.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -152,7 +153,7 @@
             };
 
             function zoomMap() {
-                map.
+            //    map.
             }
 
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -174,10 +175,8 @@
                 json.List.forEach(function(tm){
                     var geo = tm.GeographicLocation;
                     var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
-
                     var addr = tm.Address;
                     var price = tm.PriceDisplay;
-                    var titl = tm.Title;
 
 
                     var marker = new google.maps.Marker({
@@ -186,7 +185,7 @@
                         title: 'NewMarket House'
                     });
 
-                    var contentString = addr + "<br>" + price + "<br>" + titl;
+                    var contentString = addr + "<br>" + price + "<br>" + suburb_data[0].num_sales;
 
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
