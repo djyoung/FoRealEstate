@@ -114,6 +114,7 @@
            <div class = "row"></div>
             <div class = "row">
                <img src="img/logo.png" class="img-responsive" alt="Logo">
+                
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Pick a suburb
@@ -124,28 +125,31 @@
                         <li><a href="#">Ponsonby</a></li>
                     </ul>
                 </div>
-                <p> Number of Sales in current suburb(last 3 months)
-                <ul id="num_sales"></ul>
-                <script>
-                    $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
-                </script>
-                </p>
+                <div id= "content" style = "display:none;">
+                    <h2 class = "h2_font">Newmarket</h2>
+                    <p> Number of Sales in current suburb(last 3 months)
+                    <ul id="num_sales"></ul>
+                    <script>
+                        $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
+                    </script>
+                    </p>
 
-                <p> prices sold (last 3 months)
-                <ul id="cv_price"></ul>
-                <script>
-                    $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
-                </script>
-                </p>
+                    <p> prices sold (last 3 months)
+                    <ul id="cv_price"></ul>
+                    <script>
+                        $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
+                    </script>
+                    </p>
 
-                <p> CV difference in percentage
-                <ul id="cv_difference"></ul>
-                <script>
-                    $("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
-                </script>
-                </p>
+                    <p> CV difference in percentage
+                    <ul id="cv_difference"></ul>
+                    <script>
+                        $("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
+                    </script>
+                    </p>
+                </div>
             </div>
-            </div>
+        </div>
         <div class="col-lg-10 col-sm-4 col-xs-12" style = "height: 100%">
             <div id="map-canvas" style = "height: 100%; width:100%;"></div>
         </div>

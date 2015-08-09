@@ -9,6 +9,8 @@ $(function() {
         } else if (suburb == "Ponsonby") {
             get_properties(83);
         }
+
+        $('#content').show();
     });
 });
 
