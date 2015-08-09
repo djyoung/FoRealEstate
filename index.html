@@ -5,9 +5,8 @@
     <title>My AngularJS App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href = "css/custom.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="js/suburbPrices.js"></script>
 
@@ -24,67 +23,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
-
-    <style type="text/css">
-        html, body, #map-canvas {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #main, #main>.row {
-            height:100%;
-        }
-
-        .vertical_center {
-            display: inline-block;
-            vertical-align: middle;
-            text-align: center;
-            margin-top:auto;
-            margin-bottom:auto;
-            background-color: #ff9800;
-            height: 100%;
-
-        }
-
-
-        #map-canvas {
-            width:75%;
-            height:100%;
-            position:absolute;
-            right:0px;
-            top:0px;
-            bottom:0;
-            overflow:hidden;
-        }
-
-        #panel {
-            left: 50%;
-            margin-left: -180px;
-            padding: 5px;
-            border: 1px solid #999;
-        }
-
-        #panel, .panel {
-            font-family: 'Roboto','sans-serif';
-            line-height: 30px;
-            padding-left: 10px;
-        }
-
-        #panel select, #panel input, .panel select, .panel input {
-            font-size: 15px;
-        }
-
-        #panel select, .panel select {
-            width: 100%;
-        }
-
-        #panel i, .panel i {
-            font-size: 12px;
-        }
-
-    </style>
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4RfaYlHIj7Ers6mE0mUamZt8rU6xdvGI">
     </script>
@@ -95,7 +33,6 @@
         //**
         var MY_MAPTYPE_ID = 'custom_style';
         var map;
-        varLatLng;
         //**
         function initialize() {
             var myLatlng = new google.maps.LatLng(-36.8630231,174.8654693);
@@ -207,11 +144,10 @@
 
 <div class="container-fluid" id="main">
     <div class="row">
-        <div class="col-xs-3 vertical_center">
+        <div class="col-md-2 vertical_center">
             <h2>HouseIt</h2>
-            <div id="panel">
                 <p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063)">Suburb</button></p>
-            </div>
+
 
             <p> Number of Sales in current suburb(last 3 months)
                 <ul id="num_sales"></ul>
@@ -233,10 +169,13 @@
                 $("#cv_difference").append("<li>" + suburb_data[0].cv_difference + "</li>")
             </script>
             </p>
+        </div>
+        <div class="col-md-8" style = "height: 100%">
+            <div id="map-canvas" style = "height: 100%; width:100%;"></div>
+        </div>
+        <div class = "col-md-2 vertical_center">
 
         </div>
-        <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
-        <div id="map-canvas"></div>
     </div>
 </div>
 

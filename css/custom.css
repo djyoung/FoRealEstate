@@ -1,0 +1,41 @@
+/*Custom CSS for the Web App*/
+
+
+/*Map styling*/
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#main, #main>.row {
+    height:100%;
+}
+
+.vertical_center {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-top:auto;
+    margin-bottom:auto;
+    background-color: #ff9800;
+    height: 100%;
+
+}
+
+
+#map-canvas {
+    width:75%;
+    height:100%;
+    position:absolute;
+    right:0px;
+    top:0px;
+    bottom:0;
+    overflow:hidden;
+}
+
+@font-face {
+    font-family: Custom;
+    src: url('');
+}
