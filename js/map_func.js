@@ -9,9 +9,9 @@ function find_properties_on_map(data) {
             var geo = tm.GeographicLocation;
             var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
 
-            var addr = tm.Address;
+            var address = tm.Address;
             var price = tm.PriceDisplay;
-            //var tit = tm.Title;
+            var trademe_url = '<a href="https://trademe.co.nz/' + tm.ListingId + '">View on Trademe</a>';
 
 
             var marker = new google.maps.Marker({
@@ -23,7 +23,7 @@ function find_properties_on_map(data) {
 
             markers.push(marker);
 
-            var contentString = addr + "<br>" + price + "<br>";
+            var contentString = address + "<br>" + price + "<br>" + trademe_url;
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
             });
