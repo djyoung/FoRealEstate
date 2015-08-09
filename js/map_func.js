@@ -11,6 +11,7 @@ function find_properties_on_map(data) {
 
             var addr = tm.Address;
             var price = tm.PriceDisplay;
+            var propUrl = tm.
             //var tit = tm.Title;
 
 
