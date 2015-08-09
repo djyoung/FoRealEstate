@@ -16,11 +16,15 @@ html, body {
 .vertical_center {
     text-align: center;
     background-color: #ff9800;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (min-width: 600px) {
     .vertical_center {
         height: 100%;
+        margin: auto;
+
     }
 }
 
@@ -29,6 +33,7 @@ html, body {
         height: 100px;
         width: 100px;
         margin: auto;
+
     }
 }
 
