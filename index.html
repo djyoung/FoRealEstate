@@ -5,9 +5,8 @@
     <title>My AngularJS App</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href = "css/custom.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="js/suburbPrices.js"></script>
 
@@ -22,69 +21,9 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/map_func.js"></script>
 
 
-
-    <style type="text/css">
-        html, body, #map-canvas {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #main, #main>.row {
-            height:100%;
-        }
-
-        .vertical_center {
-            display: inline-block;
-            vertical-align: middle;
-            text-align: center;
-            margin-top:auto;
-            margin-bottom:auto;
-            background-color: #ff9800;
-            height: 100%;
-
-        }
-
-
-        #map-canvas {
-            width:75%;
-            height:100%;
-            position:absolute;
-            right:0px;
-            top:0px;
-            bottom:0;
-            overflow:hidden;
-        }
-
-        #panel {
-            left: 50%;
-            margin-left: -180px;
-            padding: 5px;
-            border: 1px solid #999;
-        }
-
-        #panel, .panel {
-            font-family: 'Roboto','sans-serif';
-            line-height: 30px;
-            padding-left: 10px;
-        }
-
-        #panel select, #panel input, .panel select, .panel input {
-            font-size: 15px;
-        }
-
-        #panel select, .panel select {
-            width: 100%;
-        }
-
-        #panel i, .panel i {
-            font-size: 12px;
-        }
-
-    </style>
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4RfaYlHIj7Ers6mE0mUamZt8rU6xdvGI">
     </script>
@@ -95,7 +34,6 @@
         //**
         var MY_MAPTYPE_ID = 'custom_style';
         var map;
-        varLatLng;
         //**
         function initialize() {
             var myLatlng = new google.maps.LatLng(-36.8630231,174.8654693);
@@ -131,7 +69,7 @@
                 {
                     featureType: 'water',
                     stylers: [
-                        {color: '#4575AB'}
+                        {color: '#678B9C'}
                     ]
                 }
             ];
@@ -146,10 +84,8 @@
                     mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
                 },
                 mapTypeId: MY_MAPTYPE_ID
-                //***
             };
-
-
+            
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
             var styledMapOptions = {
@@ -161,42 +97,7 @@
 //****
 
 
-            $.getJSON("data/newmarket_properties.json", function (json) {
-               var tradeMeData = json.list;
-                console.log(json);
-
-                json.List.forEach(function(tm){
-                    var geo = tm.GeographicLocation;
-                    var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
-                    var addr = tm.Address;
-                    var price = tm.PriceDisplay;
-
-
-                    var marker = new google.maps.Marker({
-                        position: myLatlng2,
-                        map: map,
-                        title: 'NewMarket House'
-                    });
-
-                    var contentString = addr + "<br>" + price + "<br>";
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-
-
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infowindow.open(map, marker);
-                    });
-                });
-            });
         }
-        function zoomMap(zoomLevel, lat, lng) {
-            map.setCenter(new google.maps.LatLng(lat,lng));
-            map.setZoom(zoomLevel);
-        }
-
-
         google.maps.event.addDomListener(window, 'load', initialize);
 
 
@@ -206,38 +107,53 @@
 <body onload="initialize()">
 
 <div class="container-fluid" id="main">
-    <div class="row">
-        <div class="col-xs-3 vertical_center">
-            <h2>HouseIt</h2>
-            <div id="panel">
-                <p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063)">Suburb</button></p>
-            </div>
-
-            <p> Number of Sales in current suburb(last 3 months)
+    <div class="row body">
+        <div class="col-lg-2 col-sm-4 col-xs-12 vertical_center left-side">
+           <div class = "row"></div>
+            <div class = "row">
+               <img src="img/logo.png" class="img-responsive" alt="Logo">
+                
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Pick a suburb
+                        <span class="caret"></span>
+                    </button>
+                    <ul id="suburb-selector" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Newmarket</a></li>
+                        <li><a href="#">Ponsonby</a></li>
+                    </ul>
+                </div>
+                <p> Number of Sales in current suburb(last 3 months)
                 <ul id="num_sales"></ul>
-            <script>
-                $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
-            </script>
-            </p>
+                <script>
+                 //   $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
+                </script>
+                </p>
 
-            <p> prices sold (last 3 months)
-            <ul id="cv_price"></ul>
-            <script>
-                $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
-            </script>
-            </p>
-
-            <p> CV difference in %
-            <ul id="cv_difference"></ul>
-            <script>
-                $("#cv_difference").append("<li>" + suburb_data[0].cv_difference + "</li>")
-            </script>
-            </p>
+                <div id= "content" style = "display:none;">
+                        <h2 class = "h2_font">Newmarket</h2>
+                    <p> prices sold (last 3 months)
+                    <ul id="cv_price"></ul>
+                    <script>
+                        //$("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
+                    </script>
+                    </p>
+    
+                    <p> CV difference in percentage
+                    <ul id="cv_difference"></ul>
+                    <script>
+                        //$("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
+                    </script>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-sm-4 col-xs-12" style = "height: 100%">
+            <div id="map-canvas" style = "height: 100%; width:100%;"></div>
+        </div>
+        <!--<div id= "footer" class = "col-lg-2 col-sm-4 col-xs-12 vertical_center left-side">-->
 
         </div>
-        <div class="col-xs-9"><!--map-canvas will be postioned here--></div>
-        <div id="map-canvas"></div>
-    </div>
 </div>
 
 <!--<div ng-view></div>-->
@@ -248,7 +164,7 @@
  -->
 <!--<script src="bower_components/angular/angular.js"></script>-->
 <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
-<!--<script src="app.js"></script>-->
+<script src="js/app.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>

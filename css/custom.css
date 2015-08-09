@@ -1,0 +1,55 @@
+/*Custom CSS for the Web App*/
+
+
+/*Map styling*/
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#main, #main>.row {
+    height:100%;
+}
+
+.vertical_center {
+    text-align: center;
+    background-color: #ff9800;
+}
+
+@media (min-width: 600px) {
+    .vertical_center {
+        height: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .vertical_center img {
+        height: 100px;
+        width: 100px;
+        margin: auto;
+    }
+}
+
+#map-canvas {
+    width:75%;
+    height:100%;
+    position:absolute;
+    right:0px;
+    top:0px;
+    bottom:0;
+    overflow:hidden;
+}
+
+@font-face {
+    font-family: "Akkurat_Regular";
+    src: url('/Akkurat_Regular.otf');
+}
+
+h2 {
+    font-family: "Akkurat_Regular";
+    font-variant: all-small-caps;
+    font-color: #000000;
+}
+
