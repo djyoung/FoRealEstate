@@ -30,9 +30,6 @@ html, body {
         width: 100px;
         margin: auto;
     }
-    #footer {
-
-    }
 }
 
 #map-canvas {
@@ -46,8 +43,13 @@ html, body {
 }
 
 @font-face {
-    font-family: Custom;
-    src: url('');
+    font-family: "Akkurat_Regular";
+    src: url('/Akkurat_Regular.otf');
 }
 
+h2 {
+    font-family: "Akkurat_Regular";
+    font-variant: all-small-caps;
+    font-color: #000000;
+}
 
