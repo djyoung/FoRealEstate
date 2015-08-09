@@ -14,16 +14,26 @@ html, body {
 }
 
 .vertical_center {
-    display: inline-block;
-    vertical-align: middle;
     text-align: center;
-    margin-top:auto;
-    margin-bottom:auto;
     background-color: #ff9800;
-    height: 100%;
-
 }
 
+@media (min-width: 600px) {
+    .vertical_center {
+        height: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .vertical_center img {
+        height: 100px;
+        width: 100px;
+        margin: auto;
+    }
+    #footer {
+
+    }
+}
 
 #map-canvas {
     width:75%;
@@ -39,3 +49,5 @@ html, body {
     font-family: Custom;
     src: url('');
 }
+
+
