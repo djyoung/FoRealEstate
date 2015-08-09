@@ -2,7 +2,7 @@ $(function() {
     initialize();
 
     $("#suburb-selector a").click(function (e) {
-       var suburb = e.target.innerHTML;
+        var suburb = e.target.innerHTML;
 
         if (suburb == "Newmarket") {
             get_properties(99);

@@ -84,10 +84,8 @@
                     mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
                 },
                 mapTypeId: MY_MAPTYPE_ID
-                //***
             };
-
-
+            
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
             var styledMapOptions = {
@@ -132,19 +130,22 @@
                 </script>
                 </p>
 
-                <p> prices sold (last 3 months)
-                <ul id="cv_price"></ul>
-                <script>
-                    //$("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
-                </script>
-                </p>
-
-                <p> CV difference in percentage
-                <ul id="cv_difference"></ul>
-                <script>
-                    //$("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
-                </script>
-                </p>
+                <div id= "content" style = "display:none;">
+                        <h2 class = "h2_font">Newmarket</h2>
+                    <p> prices sold (last 3 months)
+                    <ul id="cv_price"></ul>
+                    <script>
+                        //$("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
+                    </script>
+                    </p>
+    
+                    <p> CV difference in percentage
+                    <ul id="cv_difference"></ul>
+                    <script>
+                        //$("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
+                    </script>
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-lg-10 col-sm-4 col-xs-12" style = "height: 100%">
