@@ -4,6 +4,7 @@ function zoomMap(zoomLevel, lat, lng) {
 }
 
 function find_properties_on_map(data) {
+    var markers = [];
         data.List.forEach(function (tm) {
             var geo = tm.GeographicLocation;
             var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
@@ -20,18 +21,26 @@ function find_properties_on_map(data) {
 
             });
 
+            markers.push(marker);
+
             var contentString = addr + "<br>" + price + "<br>";
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
             });
 
-            zoomMap(14,-36.8683083, 174.7766063); // Centre on Newmarket
+            //zoomMap(14,-36.8683083, 174.7766063); // Centre on Newmarket
 
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.open(map, marker);
             });
         });
-    //});
+
+    var bounds = new google.maps.LatLngBounds();
+    for(i=0;i<markers.length;i++) {
+        bounds.extend(markers[i].getPosition());
+    }
+
+    map.fitBounds(bounds);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

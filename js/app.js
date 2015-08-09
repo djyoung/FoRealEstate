@@ -7,7 +7,7 @@ $(function() {
         if (suburb == "Newmarket") {
             get_properties(99);
         } else if (suburb == "Ponsonby") {
-            console.log("ponsonby");
+            get_properties(83);
         }
     });
 });
