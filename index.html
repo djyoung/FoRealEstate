@@ -21,6 +21,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/map_func.js"></script>
 
 
     <script type="text/javascript"
@@ -68,7 +69,7 @@
                 {
                     featureType: 'water',
                     stylers: [
-                        {color: '#4575AB'}
+                        {color: '#678B9C'}
                     ]
                 }
             ];
@@ -97,7 +98,7 @@
             map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 //****
 
-
+/*
             $.getJSON("data/newmarket_properties.json", function (json) {
                var tradeMeData = json.list;
                 console.log(json);
@@ -116,22 +117,47 @@
                     });
 
                     var contentString = addr + "<br>" + price + "<br>";
-
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });
-
 
                     google.maps.event.addListener(marker, 'click', function () {
                         infowindow.open(map, marker);
                     });
                 });
             });
+
+            */
+
         }
-        function zoomMap(zoomLevel, lat, lng) {
-            map.setCenter(new google.maps.LatLng(lat,lng));
-            map.setZoom(zoomLevel);
+
+                json.List.forEach(function(tm){
+                    var geo = tm.GeographicLocation;
+                    var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
+                    var addr = tm.Address;
+                    var price = tm.PriceDisplay;
+
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng2,
+                        map: map,
+                        title: 'NewMarket House'
+                    });
+
+                    var contentString = addr + "<br>" + price + "<br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infowindow.open(map, marker);
+                    });
+                });
+            });
+            google.maps.event.addDomListener(window, 'load', initialize);
         }
+
+
 
 
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -146,8 +172,8 @@
     <div class="row">
         <div class="col-md-2 vertical_center">
             <h2>HouseIt</h2>
-                <p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063)">Suburb</button></p>
-
+            <p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063), fuckShit()">Suburb</button></p>
+            
 
             <p> Number of Sales in current suburb(last 3 months)
                 <ul id="num_sales"></ul>
@@ -163,10 +189,10 @@
             </script>
             </p>
 
-            <p> CV difference in %
+            <p> CV difference in percentage
             <ul id="cv_difference"></ul>
             <script>
-                $("#cv_difference").append("<li>" + suburb_data[0].cv_difference + "</li>")
+                $("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
             </script>
             </p>
         </div>
