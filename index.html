@@ -108,9 +108,17 @@
     <div class="row">
         <div class="col-md-2 vertical_center">
             <h2>HouseIt</h2>
-            <!--<p><button name=btn-suburb"  onclick = "zoomMap(14,-36.8683083, 174.7766063), fuckShit()">Suburb</button></p>-->
-            <p><button name=btn-suburb"  onclick = "update_map('Newmarket')">Suburb</button></p>
-            
+            <!--<p><button name=btn-suburb"  onclick = "update_map('Newmarket')">Suburb</button></p>-->
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Dropdown
+                    <span class="caret"></span>
+                </button>
+                <ul id="suburb-selector" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Newmarket</a></li>
+                    <li><a href="#">Ponsonby</a></li>
+                </ul>
+            </div>
 
             <p> Number of Sales in current suburb(last 3 months)
                 <ul id="num_sales"></ul>

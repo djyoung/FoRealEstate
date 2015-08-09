@@ -1,12 +1,15 @@
-function update_map(suburb) {
+$(function() {
     zoomMap(14,-36.8683083, 174.7766063); // Centre on Newmarket
 
-    if (suburb == "Newmarket") {
+    $("#suburb-selector a").click(function (suburb) {
+       console.log(suburb);
         get_properties(99);
-    }
+    });
 
-
-}
+    //if (suburb == "Newmarket") {
+    //    get_properties(99);
+    //}
+});
 
 function get_properties(suburb_id) {
     var consumer_key = '1E1CEAEE21AC5CEF929105F5564520CA';
