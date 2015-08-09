@@ -96,58 +96,62 @@
 
             var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
             map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+//****
+
 
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+
+
     </script>
 
 </head>
 <body onload="initialize()">
 
 <div class="container-fluid" id="main">
-    <div class="row">
-        <div class="col-md-2 vertical_center">
-            <h2>HouseIt</h2>
-            <!--<p><button name=btn-suburb"  onclick = "update_map('Newmarket')">Suburb</button></p>-->
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Dropdown
-                    <span class="caret"></span>
-                </button>
-                <ul id="suburb-selector" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Newmarket</a></li>
-                    <li><a href="#">Ponsonby</a></li>
-                </ul>
-            </div>
-
-            <p> Number of Sales in current suburb(last 3 months)
+    <div class="row body">
+        <div class="col-lg-2 col-sm-4 col-xs-12 vertical_center left-side">
+           <div class = "row"></div>
+            <div class = "row">
+               <img src="img/logo.png" class="img-responsive" alt="Logo">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Dropdown
+                        <span class="caret"></span>
+                    </button>
+                    <ul id="suburb-selector" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Newmarket</a></li>
+                        <li><a href="#">Ponsonby</a></li>
+                    </ul>
+                </div>
+                <p> Number of Sales in current suburb(last 3 months)
                 <ul id="num_sales"></ul>
-            <script>
-                $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
-            </script>
-            </p>
+                <script>
+                    $("#num_sales").append("<li>" + suburb_data[0].num_sales + "</li>")
+                </script>
+                </p>
 
-            <p> prices sold (last 3 months)
-            <ul id="cv_price"></ul>
-            <script>
-                $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
-            </script>
-            </p>
+                <p> prices sold (last 3 months)
+                <ul id="cv_price"></ul>
+                <script>
+                    $("#cv_price").append("<li>" + suburb_data[0].median_price + "</li>")
+                </script>
+                </p>
 
-            <p> CV difference in percentage
-            <ul id="cv_difference"></ul>
-            <script>
-                $("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
-            </script>
-            </p>
-        </div>
-
-        <div class="col-md-8" style = "height: 100%">
+                <p> CV difference in percentage
+                <ul id="cv_difference"></ul>
+                <script>
+                    $("#cv_difference").append("<li>" + "+" + suburb_data[0].cv_difference + "%" + "</li>")
+                </script>
+                </p>
+            </div>
+            </div>
+        <div class="col-lg-10 col-sm-4 col-xs-12" style = "height: 100%">
             <div id="map-canvas" style = "height: 100%; width:100%;"></div>
         </div>
-        <div class = "col-md-2 vertical_center">
+        <!--<div id= "footer" class = "col-lg-2 col-sm-4 col-xs-12 vertical_center left-side">-->
+
         </div>
-    </div>
 </div>
 
 <!--<div ng-view></div>-->
