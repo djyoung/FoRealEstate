@@ -3,18 +3,16 @@ function zoomMap(zoomLevel, lat, lng) {
     map.setZoom(zoomLevel);
 }
 
-function fuckShit() {
-    $.getJSON("data/newmarket_properties.json", function (json) {
-        var tradeMeData = json.list;
-        console.log(json);
+function find_properties_on_map(data) {
 
-        json.List.forEach(function (tm) {
+
+        data.List.forEach(function (tm) {
             var geo = tm.GeographicLocation;
             var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
 
             var addr = tm.Address;
             var price = tm.PriceDisplay;
-            var tit = tm.Title;
+            //var tit = tm.Title;
 
 
             var marker = new google.maps.Marker({
@@ -33,7 +31,7 @@ function fuckShit() {
                 infowindow.open(map, marker);
             });
         });
-    });
+    //});
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
