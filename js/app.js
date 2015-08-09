@@ -1,14 +1,15 @@
 $(function() {
-    zoomMap(14,-36.8683083, 174.7766063); // Centre on Newmarket
+    initialize();
 
-    $("#suburb-selector a").click(function (suburb) {
-       console.log(suburb);
-        get_properties(99);
+    $("#suburb-selector a").click(function (e) {
+       var suburb = e.target.innerHTML;
+
+        if (suburb == "Newmarket") {
+            get_properties(99);
+        } else if (suburb == "Ponsonby") {
+            console.log("ponsonby");
+        }
     });
-
-    //if (suburb == "Newmarket") {
-    //    get_properties(99);
-    //}
 });
 
 function get_properties(suburb_id) {

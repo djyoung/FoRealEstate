@@ -4,8 +4,6 @@ function zoomMap(zoomLevel, lat, lng) {
 }
 
 function find_properties_on_map(data) {
-
-
         data.List.forEach(function (tm) {
             var geo = tm.GeographicLocation;
             var myLatlng2 = new google.maps.LatLng(geo.Latitude, geo.Longitude);
@@ -26,6 +24,8 @@ function find_properties_on_map(data) {
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
             });
+
+            zoomMap(14,-36.8683083, 174.7766063); // Centre on Newmarket
 
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.open(map, marker);
