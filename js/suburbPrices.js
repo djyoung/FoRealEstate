@@ -21,6 +21,10 @@ var suburb_data = [newMarket,freemansBay,herneBay,kingsland,parnell,pointChevali
 
 function updateSuburbInFor(suburb_id){
     $("#num_sales").empty();
+    $("#cv_price").empty();
+    $("#cv_difference").empty();
     var result = $.grep(suburb_data, function(e){ return e.trademe_suburb_id == suburb_id; })[0];
     $("#num_sales").append("<li>" +result.num_sales + "</li>");
+    $("#cv_price").append("<li>" +result.median_price + "</li>");
+    $("#cv_difference").append("<li>" +result.cv_difference + "</li>");
 };
