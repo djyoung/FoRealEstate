@@ -4,6 +4,7 @@ $(function() {
     $("#suburb-selector a").click(function (e) {
         var suburb = e.target.innerHTML;
 
+        //TO DO: Get this automatically (feed suburb search into TradeMe and get back suburb ID OR Hashtable)
         if (suburb == "Newmarket") {
             get_properties(99);
         } else if (suburb == "Ponsonby") {
@@ -31,6 +32,6 @@ function get_properties(suburb_id) {
     }).done(function(data) {
         console.log(data);
 
-        find_properties_on_map(data);
+        locateHouses(data);
     });
 };
